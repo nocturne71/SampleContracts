@@ -1,0 +1,29 @@
+//line 1159 - add variables
+//added whitelisted
+bool  public onlyWhitelisted = true;
+address[] public whitelistedAddresses;
+
+//line 1182
+if (onlyWhitelisted == true){
+require (isWhitelisted(msg.sender), "user is not whitelisted Addresses");
+}
+
+//line 1192 add function
+function isWhitelisted (address _user) public view returns (bool){
+    for (uint256 i = 0; i < whitelistedAddresses.length; i++){
+        if(whitelistedAddresses[i] == _user) {
+            return true;
+        }
+    }
+    return false;
+
+//line 1282 function to turn off whitelist
+function setonlyWhitelisted(bool _state) public onlyOwner {
+  onlyWhitelisted = _state;
+}
+//line 1286 function to add whitelist addresses 
+function whiteListUsers(address[] calldata _users) public onlyOwner {
+    delete whitelistedAddresses;
+    whitelistedAddresses = _users;
+
+}
