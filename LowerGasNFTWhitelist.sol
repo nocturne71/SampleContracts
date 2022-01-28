@@ -1146,16 +1146,18 @@ contract lowergasNFTWhitelist is ERC721, Ownable {
   string public uriPrefix = "ipfs://<link>/";
   string  public uriSuffix = ".json";
   string  public hiddenMetadataUri;
+  //this wallet will get a sharePercent when withdraw is called
   address public sharePayable =0xAb8483F64d9C6d1EcF9b849Ae677dD3315835cb2;
   uint256 public cost = 0.1 ether;
   uint256 public maxSupply = 3333;
   uint256 public maxMintAmountPerTx = 5;
+  //this is the sharePercent payable
   uint256 public sharePercent = 20;
 
   bool public  paused = true;
   bool public revealed = false;
+  //added whitelisted
   bool  public onlyWhitelisted = true;
-
   address[] public whitelistedAddresses;
 
   constructor() ERC721("Project", "BC") {
